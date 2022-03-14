@@ -1,0 +1,17 @@
+{# On hérite du template commun entre home et list #}
+{% extends "front/main/list_template.html.twig" %}
+
+{% block title %}Tous les films et séries{% endblock %}
+
+{% block nav_active_movies %}active{% endblock %}
+
+{% block sub_title %}
+
+{% if app.request.query.get('search') is not null %}
+Résultats de recherche pour <i>"{{ app.request.query.get('search') }}"</i>
+{% else %}
+Les films et séries
+{% endif %}
+
+{% endblock %}
+
