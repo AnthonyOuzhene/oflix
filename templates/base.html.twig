@@ -84,6 +84,7 @@
                             {% if is_granted('ROLE_MANAGER') %}
                             <li><a class="dropdown-item" href="{{ path('back_movie_index') }}">Backoffice</a></li>
                             {% endif %}
+                            <li><a class="dropdown-item" href="{{ path('api_v10_movies_list') }}">Api</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
