@@ -41,11 +41,15 @@ class MovieController extends AbstractController
      * @Route("/{id}", name="movie_details", requirements={"id"="\d+"}, methods ={"GET"})
      * @return Response
      */
-    public function movie_details(Movie $movie): Response
+    public function movie_details(Movie $movie = null): Response
     {
         // Le Param Converter prépare les données
 
         // Gérer si film donné n'existe pas
+        if ($movie === null)
+        {
+            return $this->json(['error' => 'Ce film n\'existe pas. Veuillez rentrer un id connu.']);
+        }
 
         return $this->json($movie,
         Response::HTTP_OK,

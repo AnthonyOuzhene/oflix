@@ -49,7 +49,7 @@ class MovieController extends AbstractController
     {
         // 404 ?
         if ($movie === null) {
-            return $this->json(['error' => 'Film non trouvé.'], Response::HTTP_NOT_FOUND);
+            return $this->json(['error' => 'Film non trouvé.'], Response::HTTP_FORBIDDEN);
         }
 
         return $this->json($movie, Response::HTTP_OK, [], ['groups' => 'get_movies_item']);
