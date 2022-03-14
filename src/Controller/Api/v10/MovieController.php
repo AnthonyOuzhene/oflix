@@ -48,7 +48,7 @@ class MovieController extends AbstractController
         // Gérer si film donné n'existe pas
         if ($movie === null)
         {
-            return $this->json(['error' => 'Ce film n\'existe pas. Veuillez rentrer un id connu.']);
+            throw $this->createNotFoundException('Ce film est inconnu. Veuillez renseignez un id correspondant à un film répertorié');
         }
 
         return $this->json($movie,

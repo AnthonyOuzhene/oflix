@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api\v10;
 
+use App\Entity\Movie;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
