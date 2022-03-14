@@ -29,6 +29,8 @@ class Movie
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"get_movies_collection", "get_movies_item"})
+     * @Groups({"api_movie_list", "api_movie_details"})
+     * 
      */
     private $id;
 
@@ -36,6 +38,8 @@ class Movie
      * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\NotBlank
      * @Groups({"get_movies_collection", "get_movies_item"})
+     * @Groups({"api_movie_list", "api_movie_details"})
+     * 
      */
     private $title;
 
@@ -43,6 +47,7 @@ class Movie
      * @ORM\Column(type="string", length=20)
      * @Assert\NotBlank
      * @Groups({"get_movies_collection", "get_movies_item"})
+     * 
      */
     private $type;
 
@@ -56,6 +61,7 @@ class Movie
     /**
      * @ORM\OneToMany(targetEntity=Season::class, mappedBy="movie", cascade={"remove"})
      * @Groups({"get_movies_collection", "get_movies_item"})
+     * 
      */
     private $seasons;
 
@@ -65,6 +71,9 @@ class Movie
      * Si on souhaite qu'un film ait au moins 1 genre
      * @Assert\Count(min=1)
      * @Groups({"get_movies_collection", "get_movies_item"})
+     * @Groups({"api_movie_list", "api_movie_details"})
+     * 
+     * 
      */
     private $genres;
 
@@ -81,6 +90,8 @@ class Movie
      * @ORM\Column(type="smallint")
      * @Assert\NotBlank
      * @Groups({"get_movies_collection", "get_movies_item"})
+     * @Groups({"api_movie_list", "api_movie_details"})
+     * 
      */
     private $duration;
 
@@ -88,6 +99,8 @@ class Movie
      * @ORM\Column(type="string", length=600)
      * @Assert\NotBlank
      * @Groups({"get_movies_collection", "get_movies_item"})
+     * @Groups({"api_movie_list", "api_movie_details"})
+     * 
      */
     private $summary;
     
@@ -95,30 +108,40 @@ class Movie
      * @ORM\Column(type="text")
      * @Assert\NotBlank
      * @Groups({"get_movies_item"})
+     * @Groups({"api_movie_list", "api_movie_details"})
+     *
      */
     private $synopsis;
 
     /**
      * @ORM\Column(type="string", length=2048, nullable=true)
      * @Groups({"get_movies_collection", "get_movies_item"})
+     * @Groups({"api_movie_list", "api_movie_details"})
+     * 
      */
     private $poster;
 
     /**
      * @ORM\Column(type="float", nullable=true)
      * @Groups({"get_movies_collection", "get_movies_item"})
+     * @Groups({"api_movie_list", "api_movie_details"})
+     * 
      */
     private $rating;
     
     /**
      * @ORM\OneToMany(targetEntity=Review::class, mappedBy="movie", cascade={"remove"})
      * @Groups({"get_movies_item"})
+     * @Groups({"api_movie_list", "api_movie_details"})
+     * 
      */
     private $reviews;
 
     /**
      * @ORM\Column(type="string", length=500, unique=true)
      * @Groups({"get_movies_collection", "get_movies_item"})
+     * @Groups({"api_movie_list", "api_movie_details"})
+     * 
      */
     private $slug;
 
