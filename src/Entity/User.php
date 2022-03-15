@@ -21,7 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"api_users_list"})
+     * @Groups({"api_users"})
      */
     private $id;
 
@@ -29,14 +29,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\NotBlank
      * @Assert\Email
-     * @Groups({"api_users_list"})
+     * @Groups({"api_users"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
      * @Assert\NotBlank
-     * @Groups({"api_users_list"})
+     * @Groups({"api_users"})
      *      
      * */
     private $roles = [];
@@ -51,6 +51,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="boolean", options={"default":true})
+     * @Groups({"api_users"})
+     * 
      */
     private $active = true;
 

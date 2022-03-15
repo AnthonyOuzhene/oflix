@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * 
- * @Route("/api/v10/users", name="api_v10_users_")
+ * @Route("/api/v10/users", name="api_v10_users_", methods ={"GET"})
  */
 class UserController extends AbstractController
 {
@@ -25,29 +25,31 @@ class UserController extends AbstractController
         // préparer les données
         $usersList = $userRepository->findAll();
         
-        return $this->json($usersList, Response::HTTP_OK, [], ['groups' => "api_users_list"]);
+        return $this->json($usersList, Response::HTTP_OK, [], ['groups' => "api_users"]);
     }
 
      /**
      * Display details of one movie
      * 
-     * @Route("/{id}", name="movie_details", requirements={"id"="\d+"}, methods ={"GET"})
+     * @Route("/{id}", name="movie_users", requirements={"id"="\d+"}, methods ={"GET"})
      * @return Response
      */
-    public function movie_details(Movie $movie = null): Response
+    public function read(int $id, UserRepository $userRepository): Response
     {
-        // Le Param Converter prépare les données
+        // préparer les données
+        $user = $userRepository->find($id);
 
-        // Gérer si film donné n'existe pas
-        if ($movie === null)
+        if (is_null($user))
         {
-            return $this->json(['error' => 'Ce film n\'existe pas. Veuillez rentrer un id connu.']);
+            $data = 
+            [
+                'error' => true,
+                'message' => 'User not found',
+            ];
+            return $this->json($data, Response::HTTP_NOT_FOUND, []);
         }
 
-        return $this->json($movie,
-        Response::HTTP_OK,
-        [],
-        ['groups' => "api_movie_details"]);
+        return $this->json($user, Response::HTTP_OK, [], ['groups' => "api_users"]);
     }
 
     

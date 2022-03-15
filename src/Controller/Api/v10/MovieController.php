@@ -23,7 +23,7 @@ class MovieController extends AbstractController
     /**
      * Get List of all movies
      * 
-     * @Route("", name="list")
+     * @Route("", name="list", methods ={"GET"})
      * @return Response
      */
     public function list(MovieRepository $movieRepository): Response
@@ -41,14 +41,19 @@ class MovieController extends AbstractController
      * @Route("/{id}", name="movie_details", requirements={"id"="\d+"}, methods ={"GET"})
      * @return Response
      */
-    public function movie_details(Movie $movie = null): Response
+    public function movie_details(int $id, MovieRepository $movieRepository): Response
     {
-        // Le Param Converter prépare les données
+        // préparer les données
+        $movie = $movieRepository->find($id);
 
-        // Gérer si film donné n'existe pas
-        if ($movie === null)
+        if (is_null($movie))
         {
-            throw $this->createNotFoundException('Ce film est inconnu. Veuillez renseignez un id correspondant à un film répertorié');
+            $data = 
+            [
+                'error' => true,
+                'message' => 'Movie not found',
+            ];
+            return $this->json($data, Response::HTTP_NOT_FOUND, []);
         }
 
         return $this->json($movie,
