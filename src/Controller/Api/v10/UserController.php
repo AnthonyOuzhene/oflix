@@ -2,11 +2,21 @@
 
 namespace App\Controller\Api\v10;
 
-use App\Entity\Movie;
+
+use App\Entity\User;
 use App\Repository\UserRepository;
+use Doctrine\Migrations\Configuration\EntityManager\ManagerRegistryEntityManager;
+use Doctrine\Persistence\ManagerRegistry;
+use PhpParser\JsonDecoder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * 
@@ -52,6 +62,35 @@ class UserController extends AbstractController
         return $this->json($user, Response::HTTP_OK, [], ['groups' => "api_users"]);
     }
 
-    
+    /**
+     * Creates a user
+     * 
+     * @Route("", name="create", methods="POST")
+     * @return Response
+     */
+    public function create(ManagerRegistry $doctrine, UserPasswordHasherInterface $hasher, Request $request, SerializerInterface $serializer): Response
+    {
+        // récupérer les données depuis la requete
+        $userAsJson = $request->getContent();
 
+        /** @var User $user */
+        $user = $serializer->deserialize($userAsJson, User::class, JsonEncoder::FORMAT);
+
+        $hashedPassword = $hasher->hashPassword($user, $user->getPassword());
+        $user->setPassword($hashedPassword);
+
+        // enregistrer le user en BDD
+        $entityManager = $doctrine->getManager();
+
+        $entityManager->persist($user);
+
+        $entityManager->flush();
+
+        $data = [
+            'id' => $user->getId(),
+        ];
+
+
+        return $this->json($data, Response::HTTP_CREATED);
+    }
 }
