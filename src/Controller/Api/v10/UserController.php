@@ -5,6 +5,7 @@ namespace App\Controller\Api\v10;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use App\Response\JsonErrorResponse;
 use Doctrine\Migrations\Configuration\EntityManager\ManagerRegistryEntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 use PhpParser\JsonDecoder;
@@ -148,13 +149,7 @@ class UserController extends AbstractController
         $errors = $validator->validate($user);
         if (count($errors) > 0)
         {
-            // TODO comment faire pour mutulaliser / simplifier l'envoi d'erreur
-            $data = [
-                'error' => true,
-                'message' => (string) $errors,
-            ];
-
-            return $this->json($data, Response::HTTP_NOT_FOUND);
+            return JsonErrorResponse::sendError('Cet identifiant est inconnu');
         }
         
         // enregistrer le user en BDD
