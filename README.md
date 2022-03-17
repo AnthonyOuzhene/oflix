@@ -114,3 +114,9 @@ Cela n'est pas précisé dans les captures mais vous pourriez proposer un accès
 - Parcourir [les conventions de codage et de nommage de Symfony](https://symfony.com/doc/current/contributing/code/standards.html).  
 Elles vous permettront d'avoir **une base pour l'écriture de votre code**.
 - [Les fondamentaux HTTP, vus par Symfony](https://symfony.com/doc/current/introduction/http_fundamentals.html).
+
+INSERT INTO `user` (`email`, `roles`, `password`, `active`) VALUES
+('admin@admin.com',	'[\"ROLE_ADMIN\"]',	'$2y$13$.PJiDK3kq2C4owW5RW6Z3ukzRc14TJZRPcMfXcCy9AyhhA9OMK3Li',	1);
+
+INSERT INTO `user` (`email`, `roles`, `password`, `active`) VALUES
+('admin@admin.com',	'[\"ROLE_ADMIN\"]',	'$2y$13$.PJiDK3kq2C4owW5RW6Z3ukzRc14TJZRPcMfXcCy9AyhhA9OMK3Li',	1);
