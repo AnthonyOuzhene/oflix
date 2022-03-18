@@ -3,7 +3,7 @@
 namespace App\Controller\Back;
 
 use App\Entity\Review;
-use App\Form\Review1Type;
+use App\Form\ReviewType;
 use App\Repository\ReviewRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,7 +32,7 @@ class ReviewController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $review = new Review();
-        $form = $this->createForm(Review1Type::class, $review);
+        $form = $this->createForm(ReviewType::class, $review);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class ReviewController extends AbstractController
      */
     public function edit(Request $request, Review $review, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(Review1Type::class, $review);
+        $form = $this->createForm(ReviewType::class, $review);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

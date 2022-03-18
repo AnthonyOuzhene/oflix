@@ -44,6 +44,7 @@ class MovieType extends AbstractType
                 'help' => 'URL de l\'image',
             ])
             ->add('rating')
+            
             ->add('genres', EntityType::class, [
                 // @link https://symfony.com/doc/current/reference/forms/types/entity.html#basic-usage
                 'class' => Genre::class,

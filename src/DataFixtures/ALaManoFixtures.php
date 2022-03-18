@@ -90,7 +90,7 @@ public function __construct(SluggerInterface $slugger)
             ',
             'duration' => 139,
             'rating' => 4.9,
-            'poster' => 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTdLTXtlwgmOU3b9iXMccLmWsFVJlBxwG3PBodcNk2O3SfJx1Jx',
+            'poster' => 'https://fr.web.img6.acsta.net/medias/nmedia/18/36/10/96/19649758.jpg',
             'genres' => [
                 'Comique',
                 'Repas',

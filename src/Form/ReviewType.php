@@ -43,11 +43,11 @@ class ReviewType extends AbstractType
             ->add('reactions', ChoiceType::class, [
                 'label' => 'Ce film vous a fait...',
                 'choices' => [
-                    'Rire' => 'smile',
-                    'Pleurer' => 'cry',
-                    'Réfléchir' => 'think',
-                    'Dormir' => 'sleep',
-                    'Rêver' => 'dream',
+                    'Rire 😁'  => 'smile',
+                    'Pleurer 😭'  => 'cry',
+                    'Réfléchir 🤔'  => 'think',
+                    'Dormir 😪'  => 'sleep',
+                    'Rêver 🤩'  => 'dream',
                 ],
                 // Choix multiple : Cela va retourner un tableau
                 'multiple' => true,
@@ -56,6 +56,8 @@ class ReviewType extends AbstractType
             ])
             ->add('watchedAt', DateType::class, [
                 'label' => 'Vous avez vu ce film le...',
+                'widget' => 'single_text',
+                'data' => new \DateTimeImmutable(),
                 'input' => 'datetime_immutable',
             ])
             // On associera le film manuellement
