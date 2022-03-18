@@ -4,6 +4,7 @@ namespace App\Controller\Front;
 
 use App\Entity\Movie;
 use App\Entity\Review;
+use App\Form\ContactType;
 use App\Form\ReviewType;
 use App\Model\Movies;
 use App\Repository\MovieRepository;
@@ -147,6 +148,40 @@ class MainController extends AbstractController
         return $this->renderForm('front/main/movie_review_add.html.twig', [
             'form' => $form,
             'movie' => $movie,
+        ]);
+    }
+
+        /**
+     * displays the contact
+     *
+     * @return Response
+     * 
+     * @Route("/contact", name="contact", methods={"GET", "POST"})
+     */
+    public function contact(Request $request) :Response
+    {
+        // préparation des données
+        $form = $this->createForm(ContactType::class);
+
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            // récupérer les données
+
+            // valider les données
+
+            // traiter le formulaire
+            mail('gbaltide@sfr.fr', "contact site oflix", 'Un contact a essayé de vous joindre avec les informations suivantes .. on concatène les valeurs recues');
+
+            // ajouter un flash message (facultatif)
+            $this->addFlash('success', 'Votre message a bien été envoyé');
+            // rediriger
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->renderForm('front/main/contact.html.twig', [
+            'form' => $form
         ]);
     }
 }

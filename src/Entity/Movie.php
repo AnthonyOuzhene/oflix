@@ -408,4 +408,9 @@ class Movie
         // Date courante
         $this->updatedAt = new DateTime();
     }
+
+    public function __toString()
+    {
+        return $this->title;
+    }
 }

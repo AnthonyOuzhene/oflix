@@ -1,0 +1,40 @@
+{% extends 'back/base_back.html.twig' %}
+
+{% block title %}Genres{% endblock %}
+
+{% block body %}
+    <h1>Genres</h1>
+
+    {{ include('_flash_messages.html.twig') }}
+
+    <a class="btn btn-success" href="{{ path('back_genre_new') }}">Ajouter un genre</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for genre in genres %}
+            <tr>
+                <td>{{ genre.id }}</td>
+                <td>{{ genre.name }}</td>
+
+                <td>
+                    <a class="btn btn-sm btn-primary" href="{{ path('back_genre_show', {'id': genre.id}) }}">show</a>
+                    <a class="btn btn-sm btn-success" href="{{ path('back_genre_edit', {'id': genre.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_genre_new') }}">Create new</a>
+{% endblock %}

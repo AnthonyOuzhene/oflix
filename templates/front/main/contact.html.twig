@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container">
+		<h1>Contact</h1>
+
+		{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+		{{ form_row(form.subject) }}
+		{{ form_row(form.email) }}
+		{{ form_row(form.urgency) }}
+		{{ form_row(form.message) }}
+		{{ form_row(form.sendEmail) }}
+		<button class="btn btn-primary">Envoyer le message</button>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}
+
+
+{% block title %}
+	Page de contact
+{% endblock %}

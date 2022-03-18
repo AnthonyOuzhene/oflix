@@ -1,0 +1,41 @@
+{% extends 'back/base_back.html.twig' %}
+
+{% block title %}Acteurs / Actrices{% endblock %}
+
+{% block body %}
+    <h1>Liste des acteurs et actrices</h1>
+
+        {{ include('_flash_messages.html.twig') }}
+
+    <a class="btn btn-success" href="{{ path('back_genre_new') }}">Ajouter un(e) acteur / actrice</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for person in people %}
+            <tr>
+                <td>{{ person.id }}</td>
+                <td>{{ person.firstname }}</td>
+                <td>{{ person.lastname }}</td>
+                <td>
+                    <a class="btn btn-sm btn-primary" href="{{ path('back_person_show', {'id': person.id}) }}">show</a>
+                    <a class="btn btn-sm btn-success" href="{{ path('back_person_edit', {'id': person.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_person_new') }}">Create new</a>
+{% endblock %}

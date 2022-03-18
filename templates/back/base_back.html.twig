@@ -2,14 +2,21 @@
 
 {% block subnav %}
 
-<ul class="nav bg-light mb-3">
-    <li class="nav-item">
-        <a class="nav-link" href="{{ path('back_movie_index') }}">Films et séries</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ path('back_user_index') }}">Utilisateurs</a>
-    </li>
-</ul>
-
-{% endblock %}
-
+	<ul class="nav bg-light mb-3">
+		<li class="nav-item">
+			<a class="nav-link" href="{{ path('back_movie_index') }}">Films et séries</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="{{ path('back_genre_index') }}">Genres</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="{{ path('back_person_index') }}">Acteurs</a>
+		</li>
+        		<li class="nav-item">
+			<a class="nav-link" href="{{ path('back_review_index') }}">Critiques</a>
+		</li>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="{{ path('back_user_index') }}">Utilisateurs</a>
+	</li>
+</ul>{% endblock %}

@@ -37,3 +37,11 @@ html {
 #back_delete_button {
     display: inline-block;
 }
+
+.img_backoffice{
+    width: 100px;
+}
+
+.btn.btn-sm{
+    margin: 5px;
+}

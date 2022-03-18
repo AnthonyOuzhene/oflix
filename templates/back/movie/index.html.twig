@@ -1,44 +1,66 @@
 {% extends 'back/base_back.html.twig' %}
 
-{% block title %}Films et séries{% endblock %}
+{% block title %}Films et séries
+{% endblock %}
 
 {% block body %}
 
-    <h1>Films et séries</h1>
+	<h1>Films et séries</h1>
 
-    {{ include('_flash_messages.html.twig') }}
+	{{ include('_flash_messages.html.twig') }}
 
-    <a class="btn btn-success" href="{{ path('back_movie_new') }}">Ajouter un film/série</a>
+	<a class="btn btn-success" href="{{ path('back_movie_new') }}">Ajouter un film/série</a>
 
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Titre</th>
-                <th>Type</th>
-                <!-- <th>Poster</th> -->
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for movie in movies %}
-            <tr>
-                <td>{{ movie.id }}</td>
-                <td><a href="{{ path('back_movie_show', {'id': movie.id}) }}">{{ movie.title }}</a></td>
-                <td>{{ movie.type }}</td>
-                <!-- <td><img src="{{ movie.poster }}" height="80"></td> -->
-                <td>
-                    <a class="btn btn-sm btn-primary" href="{{ path('back_movie_show', {'id': movie.id}) }}">show</a>
-                    <a class="btn btn-sm btn-success" href="{{ path('back_movie_edit', {'id': movie.id}) }}">edit</a>
-                    <a class="btn btn-sm btn-warning" href="{{ path('back_casting_index', {'id': movie.id}) }}">castings</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">Aucun enregistrement trouvé.</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Title</th>
+				<th>Type</th>
+				<th>ReleaseDate</th>
+				<th>Duration</th>
+				<th>Summary</th>
+				<th>Genres</th>
+				<th>Synopsis</th>
+				<th>Poster</th>
+				<th>Rating</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+        
+		<tbody>
+			{% for movie in movies %}
+				<tr>
+					<td>{{ movie.id }}</td>
+					<td>
+						<a href="{{ path('back_movie_show', {'id': movie.id}) }}">{{ movie.title }}</a>
+					</td>
+					<td>{{ movie.type }}</td>
+					<td>{{ movie.releaseDate ? movie.releaseDate|date('Y-m-d') : '' }}</td>
+					<td>{{ movie.duration }}</td>
+					<td>{{ movie.summary }}</td>
+					<td>
+						{% for genre in movie.genres %}
+							{{ genre.name ~ ' - '}}
+						{% endfor %}
+					</td>
+					<td>{{ movie.synopsis }}</td>
+					<td><img class="img_backoffice" src="{{ movie.poster }}"></td>
+					<td>{{ movie.rating }}</td>
+					<td>
+						<a class="btn btn-sm btn-primary" href="{{ path('back_movie_show', {'id': movie.id}) }}">show</a>
+						<a class="btn btn-sm btn-success" href="{{ path('back_movie_edit', {'id': movie.id}) }}">edit</a>
+						<a class="btn btn-sm btn-warning" href="{{ path('back_casting_index', {'id': movie.id}) }}">castings</a>
+						<a class="btn btn-sm btn-secondary" href="{{ path('back_review_index', {'id': movie.id}) }}">Critiques</a>
+
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="10">Aucun enregistrement trouvé.</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
 {% endblock %}
