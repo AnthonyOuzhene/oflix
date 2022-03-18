@@ -146,15 +146,10 @@ public function __construct(SluggerInterface $slugger)
         $user = new User();
         $user->setEmail('admin@admin.com');
         // password is admin
-        $user->setPassword('$2y$13$mc9q6YGcasPeb4aYFMPanOnCql.LjbtbANDDghzZn/UVGm1l7MheG');
+        $user->setPassword('$2y$13$7jpPdKFZHmjN7e84lvik5Ot9NZGJPOu7rVKkR7Zp5a8b93r8Jlq5e');        
+        // $2y$13$mc9q6YGcasPeb4aYFMPanOnCql.LjbtbANDDghzZn/UVGm1l7MheG
         $user->setRoles(['ROLE_ADMIN']);
 
-        $user = new User();
-        $user->setEmail('antho@antho.com');
-        // password is antho
-        $user->setPassword('$2y$13$v9Y5L3JzI7ku40ppuBtf4uOsRmEu.5iA28dFZdWyaHxKtw8W2Xv22');
-        $user->setRoles(['ROLE_ADMIN']);
-        $manager->persist($user);
 
         $user = new User();
         $user->setEmail('manager@manager.com');

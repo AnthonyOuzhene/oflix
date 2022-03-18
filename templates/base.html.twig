@@ -98,7 +98,7 @@
 										{% endif %}
 
 										{# Avec la hérarchie, MANAGER et ADMIN ont accès au back-office #}
-										{% if is_granted('ROLE_MANAGER') %}
+										{% if is_granted('ROLE_ADMIN') %}
 											<li>
 												<a class="dropdown-item" href="{{ path('back_movie_index') }}">Backoffice</a>
 											</li>

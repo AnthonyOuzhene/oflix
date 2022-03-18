@@ -83,11 +83,8 @@ security:
         - { path: ^/api/secure, roles: IS_AUTHENTICATED_FULLY }
 
     role_hierarchy:
-        # MANAGER hérite du rôle USER
-        # => si on souhaite que les managers et admins postent des critiques en leur nom
+        ROLE_ADMIN:   ROLE_MANAGER
         ROLE_MANAGER: ROLE_USER
-        # ADMIN hérite du rôle MANAGER
-        ROLE_ADMIN: ROLE_MANAGER
 
 when@test:
     security:
